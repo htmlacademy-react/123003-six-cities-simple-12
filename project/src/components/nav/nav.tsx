@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Nav() {
   return (
@@ -13,13 +13,13 @@ function Nav() {
           </div>
         </li>
         <li className='header__nav-item'>
-          <Link
+          <NavLink
             to='/login'
             title='/login'
             className='header__nav-link'
           >
             <span className='header__signout'>Sign out</span>
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </nav>

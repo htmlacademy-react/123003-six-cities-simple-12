@@ -1,4 +1,5 @@
 import Tabs from '../../components/tabs/tabs';
+import { Helmet } from 'react-helmet-async';
 import PlaceCard from '../../components/place-card/place-card';
 import Header from '../../components/header/header';
 
@@ -9,6 +10,9 @@ type MainPageProps = {
 function MainPage({ offersCount }: MainPageProps): JSX.Element {
   return (
     <div className='page page--gray page--main'>
+      <Helmet>
+        <title>6 cities - Places to stay</title>
+      </Helmet>
       <Header isAuthorized />
       <main className='page__main page__main--index'>
         <h1 className='visually-hidden'>Cities</h1>

@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import NearPlace from '../../components/near-place/near-place';
 
@@ -11,6 +12,9 @@ function OfferPage(): JSX.Element {
 
   return (
     <>
+      <Helmet>
+        <title>6 cities - Beautiful & luxurious studio at great location</title>
+      </Helmet>
       <Header isAuthorized />
       <main className='page__main page__main--property'>
         <section className='property'>
