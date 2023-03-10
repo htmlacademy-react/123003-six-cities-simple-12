@@ -1,4 +1,6 @@
-import {useParams} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Header from '../../components/header/header';
+import NearPlace from '../../components/near-place/near-place';
 
 function OfferPage(): JSX.Element {
   const params = useParams();
@@ -6,8 +8,10 @@ function OfferPage(): JSX.Element {
     // eslint-disable-next-line no-console
     console.log(params);
   }
+
   return (
-    <div>
+    <>
+      <Header isAuthorized />
       <main className='page__main page__main--property'>
         <section className='property'>
           <div className='property__gallery-container container'>
@@ -193,7 +197,6 @@ function OfferPage(): JSX.Element {
                         <use xlinkHref='#icon-star'></use>
                       </svg>
                     </label>
-
                     <input
                       className='form__rating-input visually-hidden'
                       name='rating'
@@ -210,7 +213,6 @@ function OfferPage(): JSX.Element {
                         <use xlinkHref='#icon-star'></use>
                       </svg>
                     </label>
-
                     <input
                       className='form__rating-input visually-hidden'
                       name='rating'
@@ -227,7 +229,6 @@ function OfferPage(): JSX.Element {
                         <use xlinkHref='#icon-star'></use>
                       </svg>
                     </label>
-
                     <input
                       className='form__rating-input visually-hidden'
                       name='rating'
@@ -244,7 +245,6 @@ function OfferPage(): JSX.Element {
                         <use xlinkHref='#icon-star'></use>
                       </svg>
                     </label>
-
                     <input
                       className='form__rating-input visually-hidden'
                       name='rating'
@@ -276,13 +276,7 @@ function OfferPage(): JSX.Element {
                       your stay with at least{''}
                       <b className='reviews__text-amount'>50 characters</b>.
                     </p>
-                    <button
-                      className='reviews__submit form__submit button'
-                      type='submit'
-                      disabled
-                    >
-                      Submit
-                    </button>
+                    <button className='reviews__submit form__submit button' type='submit' disabled>Submit</button>
                   </div>
                 </form>
               </section>
@@ -296,115 +290,14 @@ function OfferPage(): JSX.Element {
               Other places in the neighbourhood
             </h2>
             <div className='near-places__list places__list'>
-              <article className='near-places__card place-card'>
-                <div className='near-places__image-wrapper place-card__image-wrapper'>
-                  <a href='#'>
-                    <img
-                      className='place-card__image'
-                      src='img/room.jpg'
-                      width='260'
-                      height='200'
-                      alt='Place'
-                    />
-                  </a>
-                </div>
-                <div className='place-card__info'>
-                  <div className='place-card__price-wrapper'>
-                    <div className='place-card__price'>
-                      <b className='place-card__price-value'>&euro;80</b>
-                      <span className='place-card__price-text'>
-                        &#47;&nbsp;night
-                      </span>
-                    </div>
-                  </div>
-                  <div className='place-card__rating rating'>
-                    <div className='place-card__stars rating__stars'>
-                      <span style={{ width: '80%' }}></span>
-                      <span className='visually-hidden'>Rating</span>
-                    </div>
-                  </div>
-                  <h2 className='place-card__name'>
-                    <a href='#'>Wood and stone place</a>
-                  </h2>
-                  <p className='place-card__type'>Private room</p>
-                </div>
-              </article>
-
-              <article className='near-places__card place-card'>
-                <div className='near-places__image-wrapper place-card__image-wrapper'>
-                  <a href='#'>
-                    <img
-                      className='place-card__image'
-                      src='img/apartment-02.jpg'
-                      width='260'
-                      height='200'
-                      alt='Place'
-                    />
-                  </a>
-                </div>
-                <div className='place-card__info'>
-                  <div className='place-card__price-wrapper'>
-                    <div className='place-card__price'>
-                      <b className='place-card__price-value'>&euro;132</b>
-                      <span className='place-card__price-text'>
-                        &#47;&nbsp;night
-                      </span>
-                    </div>
-                  </div>
-                  <div className='place-card__rating rating'>
-                    <div className='place-card__stars rating__stars'>
-                      <span style={{ width: '80%' }}></span>
-                      <span className='visually-hidden'>Rating</span>
-                    </div>
-                  </div>
-                  <h2 className='place-card__name'>
-                    <a href='#'>Canal View Prinsengracht</a>
-                  </h2>
-                  <p className='place-card__type'>Apartment</p>
-                </div>
-              </article>
-
-              <article className='near-places__card place-card'>
-                <div className='place-card__mark'>
-                  <span>Premium</span>
-                </div>
-                <div className='near-places__image-wrapper place-card__image-wrapper'>
-                  <a href='#'>
-                    <img
-                      className='place-card__image'
-                      src='img/apartment-03.jpg'
-                      width='260'
-                      height='200'
-                      alt='Place'
-                    />
-                  </a>
-                </div>
-                <div className='place-card__info'>
-                  <div className='place-card__price-wrapper'>
-                    <div className='place-card__price'>
-                      <b className='place-card__price-value'>&euro;180</b>
-                      <span className='place-card__price-text'>
-                        &#47;&nbsp;night
-                      </span>
-                    </div>
-                  </div>
-                  <div className='place-card__rating rating'>
-                    <div className='place-card__stars rating__stars'>
-                      <span style={{ width: '100%' }}></span>
-                      <span className='visually-hidden'>Rating</span>
-                    </div>
-                  </div>
-                  <h2 className='place-card__name'>
-                    <a href='#'>Nice, cozy, warm big bed apartment</a>
-                  </h2>
-                  <p className='place-card__type'>Apartment</p>
-                </div>
-              </article>
+              <NearPlace />
+              <NearPlace />
+              <NearPlace />
             </div>
           </section>
         </div>
       </main>
-    </div>
+    </>
   );
 }
 

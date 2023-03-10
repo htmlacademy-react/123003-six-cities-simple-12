@@ -6,7 +6,11 @@ function ErrorPage(): JSX.Element {
     <div className='page page--gray page--404'>
       <h1>Error 404</h1>
       <p>Page not found</p>
-      <Link to='/'>Вернуться на главную</Link>
+      <Link
+        to='/'
+      >
+        Вернуться на главную
+      </Link>
     </div>
   );
 }

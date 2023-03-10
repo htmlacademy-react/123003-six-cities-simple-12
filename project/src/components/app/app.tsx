@@ -13,15 +13,27 @@ function App({ offersCount }: AppScreenProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={ <Layout /> }>
+        <Route
+          path='/'
+          element={<Layout />}
+        >
           <Route
             path=''
             index
-            element={ <MainPage offersCount={ offersCount } /> }
+            element={<MainPage offersCount={offersCount} />}
           />
-          <Route path='login' element={ <LoginPage /> } />
-          <Route path='offer/:id' element={ <OfferPage /> } />
-          <Route path='*' element={ <ErrorPage /> } />
+          <Route
+            path='login'
+            element={<LoginPage />}
+          />
+          <Route
+            path='offer/:id'
+            element={<OfferPage />}
+          />
+          <Route
+            path='*'
+            element={<ErrorPage />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

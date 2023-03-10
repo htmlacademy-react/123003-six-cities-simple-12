@@ -1,6 +1,10 @@
+import { Link } from 'react-router-dom';
+import Header from '../../components/header/header';
+
 function LoginPage(): JSX.Element {
   return (
     <div className="page page--gray page--login">
+      <Header isAuthorized={false} />
       <main className='page__main page__main--login'>
         <div className='page__login-container container'>
           <section className='login'>
@@ -26,19 +30,18 @@ function LoginPage(): JSX.Element {
                   required
                 />
               </div>
-              <button
-                className='login__submit form__submit button'
-                type='submit'
-              >
-                Sign in
-              </button>
+              <button className='login__submit form__submit button' type='submit'>Sign in</button>
             </form>
           </section>
           <section className='locations locations--login locations--current'>
             <div className='locations__item'>
-              <a className='locations__item-link' href='#'>
+              <Link
+                className='locations__item-link'
+                to='/'
+                title='/'
+              >
                 <span>Amsterdam</span>
-              </a>
+              </Link>
             </div>
           </section>
         </div>
