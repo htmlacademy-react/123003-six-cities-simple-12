@@ -1,0 +1,29 @@
+.page--404 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page--404 h1 {
+  font-size: 34px;
+  line-height: 1.167;
+  font-weight: 700;
+  font-style: oblique;
+  color: #383838;
+  margin-bottom: 0;
+}
+
+.page--404 p {
+  margin-bottom: 50px;
+}
+
+.page--404 a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.page--404 a:hover {
+  text-decoration: none;
+}
