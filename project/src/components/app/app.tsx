@@ -6,12 +6,16 @@ import ErrorPage from '../../pages/error-page/error-page';
 import OfferPage from '../../pages/offer-page/offer-page';
 import LoginPage from '../../pages/login-page/login-page';
 import { AppRoute } from '../../const';
+import { Offers } from '../../mocks/offers';
 
 type AppScreenProps = {
   offersCount: number;
+  offers: Offers;
+  isAuthorized: boolean;
 };
 
-function App({ offersCount }: AppScreenProps): JSX.Element {
+function App({ offersCount, offers, isAuthorized }: AppScreenProps): JSX.Element {
+  const [firstOffer] = offers;
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -22,15 +26,15 @@ function App({ offersCount }: AppScreenProps): JSX.Element {
           >
             <Route
               index
-              element={<MainPage offersCount={offersCount} />}
+              element={<MainPage offersCount={offersCount} isAuthorized={isAuthorized} />}
             />
             <Route
               path={AppRoute.Login}
-              element={<LoginPage />}
+              element={<LoginPage isAuthorized={isAuthorized} />}
             />
             <Route
               path={AppRoute.Offer}
-              element={<OfferPage />}
+              element={<OfferPage offer={firstOffer} isAuthorized={isAuthorized} />}
             />
             <Route
               path='*'
