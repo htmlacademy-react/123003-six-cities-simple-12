@@ -1,19 +1,20 @@
 import Tabs from '../../components/tabs/tabs';
 import { Helmet } from 'react-helmet-async';
-import PlaceCard from '../../components/place-card/place-card';
+import OffersList from '../../components/offers-list/offers-list';
 import Header from '../../components/header/header';
 
 type MainPageProps = {
   offersCount: number;
+  isAuthorized: boolean;
 };
 
-function MainPage({ offersCount }: MainPageProps): JSX.Element {
+function MainPage({ offersCount, isAuthorized }: MainPageProps): JSX.Element {
   return (
     <div className='page page--gray page--main'>
       <Helmet>
         <title>6 cities - Places to stay</title>
       </Helmet>
-      <Header isAuthorized />
+      <Header isAuthorized={isAuthorized} />
       <main className='page__main page__main--index'>
         <h1 className='visually-hidden'>Cities</h1>
         <Tabs />
@@ -50,13 +51,7 @@ function MainPage({ offersCount }: MainPageProps): JSX.Element {
                   </li>
                 </ul>
               </form>
-              <div className='cities__places-list places__list tabs__content'>
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-                <PlaceCard />
-              </div>
+              <OffersList />
             </section>
             <div className='cities__right-section'>
               <section className='cities__map map'></section>

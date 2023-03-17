@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import PlaceCardInfo from '../place-card-info/place-card-info';
 
 function NearPlace() {
   return (
@@ -18,7 +17,30 @@ function NearPlace() {
           />
         </Link>
       </div>
-      <PlaceCardInfo />
+      <div className='place-card__info'>
+        <div className='place-card__price-wrapper'>
+          <div className='place-card__price'>
+            <b className='place-card__price-value'>&euro;price</b>
+            <span className='place-card__price-text'>
+              &#47;&nbsp;night
+            </span>
+          </div>
+        </div>
+        <div className='place-card__rating rating'>
+          <div className='place-card__stars rating__stars'>
+            <span></span>
+            <span className='visually-hidden'>Rating</span>
+          </div>
+        </div>
+        <h2 className='place-card__name'>
+          <Link
+            to='{title}'
+            title='{title}'
+          >title
+          </Link>
+        </h2>
+        <p className='place-card__type'>type</p>
+      </div>
     </article>
   );
 }

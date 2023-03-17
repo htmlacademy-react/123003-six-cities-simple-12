@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
+import { offers } from './mocks/offers';
 
 const Setting = {
   OffersCount: 312,
+  isAuthorized: true,
 } as const;
 
 const root = ReactDOM.createRoot(
@@ -13,7 +15,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <App
-      offersCount = {Setting.OffersCount}
+      isAuthorized={Setting.isAuthorized}
+      offers={offers}
+      offersCount={Setting.OffersCount}
     />
   </React.StrictMode>
 );
