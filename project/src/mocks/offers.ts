@@ -5,6 +5,11 @@ type Photo = {
     title: string;
   };
 
+type Coordinates = {
+    lat: number;
+    lng: number;
+}
+
 
 export type Offer = {
   id: string;
@@ -20,6 +25,7 @@ export type Offer = {
   photos: Photo[];
   owner: Person;
   reviews: Review[];
+  coordinates: Coordinates;
 };
 
 export type Offers = Offer[];
@@ -74,6 +80,10 @@ export const offers: Offer[] = [
       isPro: false,
     },
     reviews,
+    coordinates:{
+      lat: 52.3909553943508,
+      lng: 4.85309666406198,
+    },
   },
   {
     id: '2',
@@ -98,6 +108,10 @@ export const offers: Offer[] = [
       isPro: false,
     },
     reviews,
+    coordinates:{
+      lat: 52.3609553943508,
+      lng: 4.85309666406198,
+    },
   },
   {
     id: '3',
@@ -119,6 +133,10 @@ export const offers: Offer[] = [
       isPro: true,
     },
     reviews,
+    coordinates:{
+      lat: 52.3909553943508,
+      lng: 4.929309666406198,
+    },
   },
   {
     id: '4',
@@ -146,6 +164,10 @@ export const offers: Offer[] = [
       isPro: true,
     },
     reviews,
+    coordinates:{
+      lat: 52.3809553943508,
+      lng: 4.939309666406198,
+    },
   },
 ];
 
