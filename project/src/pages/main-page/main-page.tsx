@@ -10,9 +10,11 @@ import { useState } from 'react';
 type MainPageProps = {
   offers: Offers;
   isAuthorized: boolean;
+  className: string;
+  classNameWrapper: string;
 };
 
-function MainPage({ offers, isAuthorized }: MainPageProps): JSX.Element {
+function MainPage({ offers, isAuthorized, className = 'cities__places-list', classNameWrapper = 'cities__image-wrapper' }: MainPageProps): JSX.Element {
   const [selectedOffer, setSelectedOffer] = useState({});
 
   const onListItemHover = (listItemName: string) => {
@@ -68,7 +70,7 @@ function MainPage({ offers, isAuthorized }: MainPageProps): JSX.Element {
             </section>
             <div className='cities__right-section'>
               <section className='cities__map map'>
-                <Map offers={offers} city={cities[3]} selectedOffer={selectedOffer} />
+                <Map offers={offers} city={cities[3]} selectedOffer={selectedOffer} className={className} classNameWrapper={classNameWrapper} />
               </section>
             </div>
           </div>

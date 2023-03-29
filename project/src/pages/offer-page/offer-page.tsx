@@ -12,9 +12,11 @@ type OfferPageProps = {
   offers: Offers;
   offer: Offer;
   isAuthorized: boolean;
+  className: string;
+  classNameWrapper: string;
 };
 
-function OfferPage({ offer, isAuthorized, offers }: OfferPageProps): JSX.Element {
+function OfferPage({ offer, isAuthorized, offers, className = 'near-places__list', classNameWrapper = 'near-places__image-wrapper' }: OfferPageProps): JSX.Element {
   const {
     title,
     description,
@@ -142,7 +144,7 @@ function OfferPage({ offer, isAuthorized, offers }: OfferPageProps): JSX.Element
             <h2 className='near-places__title'>
               Other places in the neighbourhood
             </h2>
-            <NearPlacesList offers={offers} />
+            <NearPlacesList offers={offers} className={className} classNameWrapper={classNameWrapper} />
           </section>
         </div>
       </main>

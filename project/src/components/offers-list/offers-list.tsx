@@ -4,9 +4,11 @@ import OfferCard from '../offer-card/offer-card';
 type OffersListProps = {
   offers: Offers;
   onListItemHover: Offer;
+  className: string;
+  classNameWrapper: string;
 };
 
-function OffersList({ offers, onListItemHover }: OffersListProps): JSX.Element {
+function OffersList({ offers, onListItemHover, className, classNameWrapper }: OffersListProps): JSX.Element {
   const listItemHoverHandler = (evt) => {
     onListItemHover(evt.target.innerText);
   };
@@ -15,7 +17,7 @@ function OffersList({ offers, onListItemHover }: OffersListProps): JSX.Element {
     <div className='cities__places-list places__list tabs__content'>
       {
         offers.map((offer) => (
-          <OfferCard offer={offer} key={offer.id} onMouseEnter={listItemHoverHandler} />
+          <OfferCard offer={offer} key={offer.id} onMouseEnter={listItemHoverHandler} className={className} classNameWrapper={classNameWrapper} />
         ))
       }
     </div>
