@@ -3,7 +3,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Layout from '../../components/layout/layout';
 import MainPage from '../../pages/main-page/main-page';
 import ErrorPage from '../../pages/error-page/error-page';
-import OfferPage from '../../pages/offer-page/offer-page';
+import OfferPageWrapper from '../offer-page-wrapper/offer-page-wrapper';
 import LoginPage from '../../pages/login-page/login-page';
 import { AppRoute } from '../../const';
 import { Offers } from '../../mocks/offers';
@@ -32,7 +32,7 @@ function App({ offers, isAuthorized }: AppScreenProps): JSX.Element {
             />
             <Route
               path={AppRoute.Offer}
-              element={<OfferPage offers={offers} isAuthorized={isAuthorized} />}
+              element={<OfferPageWrapper offers={offers} isAuthorized={isAuthorized} />}
             />
             <Route
               path='*'

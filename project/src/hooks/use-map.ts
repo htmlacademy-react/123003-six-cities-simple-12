@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import leaflet from 'leaflet';
 
 function useMap(mapRef:string, city:string) {

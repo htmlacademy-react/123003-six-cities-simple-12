@@ -1,11 +1,12 @@
 import { PHOTO_URL, Person, reviews, Review } from './reviews';
+import {RoomType} from '../const';
 
 type Photo = {
     src: string;
     title: string;
   };
 
-type Coordinates = {
+type Location = {
     lat: number;
     lng: number;
 }
@@ -15,8 +16,8 @@ export type Offer = {
   id: string;
   title: string;
   description: string;
-  isPremium: boolean;
-  type: string;
+  isPremium?: boolean;
+  type: RoomType;
   rating: number;
   bedrooms: number;
   guests: number;
@@ -25,7 +26,7 @@ export type Offer = {
   photos: Photo[];
   owner: Person;
   reviews: Review[];
-  coordinates: Coordinates;
+  location: Location;
 };
 
 export type Offers = Offer[];
@@ -63,7 +64,7 @@ export const offers: Offer[] = [
     title: 'Cozy room in the city center',
     description: 'The room has everything you need for the rest.',
     isPremium: true,
-    type: 'room',
+    type: RoomType.Room,
     rating: 5,
     bedrooms: 1,
     guests: 2,
@@ -80,7 +81,7 @@ export const offers: Offer[] = [
       isPro: false,
     },
     reviews,
-    coordinates:{
+    location:{
       lat: 52.3909553943508,
       lng: 4.85309666406198,
     },
@@ -90,7 +91,7 @@ export const offers: Offer[] = [
     title: 'Minimalistic apartments',
     description: 'Free wi-fi, underground parking, pet friendly',
     isPremium: false,
-    type: 'apartment',
+    type: RoomType.Apartment,
     rating: 4,
     bedrooms: 1,
     guests: 2,
@@ -108,7 +109,7 @@ export const offers: Offer[] = [
       isPro: false,
     },
     reviews,
-    coordinates:{
+    location:{
       lat: 52.3609553943508,
       lng: 4.85309666406198,
     },
@@ -118,7 +119,7 @@ export const offers: Offer[] = [
     title: 'Big house in the suburbs',
     description: 'A great place to celebrate holidays with a large company or family.',
     isPremium: true,
-    type: 'house',
+    type: RoomType.House,
     rating: 5,
     bedrooms: 3,
     guests: 10,
@@ -133,7 +134,7 @@ export const offers: Offer[] = [
       isPro: true,
     },
     reviews,
-    coordinates:{
+    location:{
       lat: 52.3909553943508,
       lng: 4.929309666406198,
     },
@@ -143,7 +144,7 @@ export const offers: Offer[] = [
     title: 'Premium hotel',
     description: 'All inclusive',
     isPremium: false,
-    type: 'hotel',
+    type: RoomType.Hotel,
     rating: 5,
     bedrooms: 2,
     guests: 4,
@@ -164,7 +165,7 @@ export const offers: Offer[] = [
       isPro: true,
     },
     reviews,
-    coordinates:{
+    location:{
       lat: 52.3809553943508,
       lng: 4.939309666406198,
     },

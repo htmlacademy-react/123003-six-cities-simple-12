@@ -1,5 +1,6 @@
 import { Offers } from '../../mocks/offers';
-import NearPlace from '../near-place-card/near-place-card';
+import OfferCard from '../offer-card/offer-card';
+import { START_NEAR_PLACES_COUNT, MAX_NEAR_PLACES_COUNT } from '../../const';
 
 type NearPlacesListProps = {
   offers: Offers;
@@ -10,9 +11,9 @@ function NearPlacesList({ offers }: NearPlacesListProps): JSX.Element {
     <div className='near-places__list places__list'>
       {
         offers.map((offer) => (
-          <NearPlace key={offer.id} offer={offer} />
+          <OfferCard key={offer.id} offer={offer} />
         )
-        ).slice(0, 3)
+        ).slice(START_NEAR_PLACES_COUNT, MAX_NEAR_PLACES_COUNT)
       }
     </div>
   );

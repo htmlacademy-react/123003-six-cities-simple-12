@@ -33,8 +33,8 @@ function Map({ city, offers, selectedOffer }: MapProps): JSX.Element {
       offers.forEach((offer) => {
         leaflet
           .marker({
-            lat: offer.coordinates.lat,
-            lng: offer.coordinates.lng,
+            lat: offer.location.lat,
+            lng: offer.location.lng,
           }, {
             icon: (offer.title === selectedOffer.title)
               ? currentCustomIcon

@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../mocks/offers';
-import { RoomTypeToLabel } from '../../const';
+import { RoomTypeToLabel, RATING_COEFFICIENT } from '../../const';
 
-type PlaceCardInfoProps = {
+type OfferCardInfoProps = {
   offer: Offer;
 }
 
-function PlaceCardInfo({ offer }: PlaceCardInfoProps): JSX.Element {
+function OfferCardInfo({ offer }: OfferCardInfoProps): JSX.Element {
   const {
     price,
     rating,
     id,
+    type,
     title,
   } = offer;
 
@@ -26,7 +27,7 @@ function PlaceCardInfo({ offer }: PlaceCardInfoProps): JSX.Element {
       </div>
       <div className='place-card__rating rating'>
         <div className='place-card__stars rating__stars'>
-          <span style={{ width: `${rating * 20}% ` }}></span>
+          <span style={{ width: `${rating * RATING_COEFFICIENT}% ` }}></span>
           <span className='visually-hidden'>Rating</span>
         </div>
       </div>
@@ -39,10 +40,10 @@ function PlaceCardInfo({ offer }: PlaceCardInfoProps): JSX.Element {
         </Link>
       </h2>
       <p className='place-card__type'>
-        {RoomTypeToLabel.Room}
+        {RoomTypeToLabel[type]}
       </p>
     </div>
   );
 }
 
-export default PlaceCardInfo;
+export default OfferCardInfo;

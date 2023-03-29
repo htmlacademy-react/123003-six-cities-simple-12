@@ -16,7 +16,7 @@ function MainPage({ offers, isAuthorized }: MainPageProps): JSX.Element {
   const [selectedOffer, setSelectedOffer] = useState({});
 
   const onListItemHover = (listItemName: string) => {
-    const currentOffer: Offer | undefined = offers.find((offer) =>
+    const currentOffer: Offer = offers.find((offer) =>
       offer.title === listItemName,
     );
     setSelectedOffer(currentOffer);

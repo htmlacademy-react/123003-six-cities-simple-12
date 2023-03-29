@@ -1,4 +1,5 @@
 import { Review } from '../../mocks/reviews';
+import { RATING_COEFFICIENT, reviewAvatarPhoto } from '../../const';
 
 type ReviewItemProps = {
   review: Review;
@@ -15,8 +16,8 @@ function ReviewItem({ review }: ReviewItemProps): JSX.Element {
           <img
             className='reviews__avatar user__avatar'
             src={avatar}
-            width='54'
-            height='54'
+            width={reviewAvatarPhoto.WIDTH}
+            height={reviewAvatarPhoto.HEIGHT}
             alt='Reviews avatar'
           />
         </div>
@@ -27,7 +28,7 @@ function ReviewItem({ review }: ReviewItemProps): JSX.Element {
           <div className='reviews__stars rating__stars'>
             {
               rating &&
-              <span style={{ width: `${rating * 20}% ` }}></span>
+              <span style={{ width: `${rating * RATING_COEFFICIENT}% ` }}></span>
             }
             <span className='visually-hidden'>Rating</span>
           </div>

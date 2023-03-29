@@ -1,22 +1,20 @@
-import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
 import NearPlacesList from '../../components/near-places-list/near-places-list';
-import { Offers } from '../../mocks/offers';
 import ReviewForm from '../../components/review-form/review-form';
-import { RoomTypeToLabel } from '../../const';
+import { RoomTypeToLabel, RATING_COEFFICIENT, offerOwnerPhoto } from '../../const';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import { cities } from '../../mocks/cities';
+import { Offer, Offers } from '../../mocks/offers';
 
 type OfferPageProps = {
   offers: Offers;
+  offer: Offer;
   isAuthorized: boolean;
 };
 
-function OfferPage({ offers, isAuthorized }: OfferPageProps): JSX.Element {
-  const params = useParams();
-
+function OfferPage({ offer, isAuthorized, offers }: OfferPageProps): JSX.Element {
   const {
     title,
     description,
@@ -29,7 +27,8 @@ function OfferPage({ offers, isAuthorized }: OfferPageProps): JSX.Element {
     photos,
     owner,
     reviews,
-  } = offers.find((offer) => offer.id === params.id) || {};
+    type,
+  } = offer;
 
   return (
     <>
@@ -68,7 +67,7 @@ function OfferPage({ offers, isAuthorized }: OfferPageProps): JSX.Element {
               </div>
               <div className='property__rating rating'>
                 <div className='property__stars rating__stars'>
-                  <span style={rating ? { width: `${rating * 20}% ` } : { width: `${20}% ` }}></span>
+                  <span style={rating ? { width: `${rating * RATING_COEFFICIENT}% ` } : { width: `${RATING_COEFFICIENT}% ` }}></span>
                   <span className='visually-hidden'>Rating</span>
                 </div>
                 <span className='property__rating-value rating__value'>
@@ -77,7 +76,7 @@ function OfferPage({ offers, isAuthorized }: OfferPageProps): JSX.Element {
               </div>
               <ul className='property__features'>
                 <li className='property__feature property__feature--entire'>
-                  {RoomTypeToLabel.Room}
+                  {RoomTypeToLabel[type]}
                 </li>
                 <li className='property__feature property__feature--bedrooms'>
                   {bedrooms} Bedrooms
@@ -93,7 +92,7 @@ function OfferPage({ offers, isAuthorized }: OfferPageProps): JSX.Element {
               <div className='property__inside'>
                 <h2 className='property__inside-title'>What&apos;s inside</h2>
                 <ul className='property__inside-list'>
-                  {options && options.map((option, index) => {
+                  {options.map((option, index) => {
                     const keyValue = `${index}`;
                     return (
                       <li key={keyValue} className='property__inside-item'>{option}</li>
@@ -107,14 +106,14 @@ function OfferPage({ offers, isAuthorized }: OfferPageProps): JSX.Element {
                   <div className='property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper'>
                     <img
                       className='property__avatar user__avatar'
-                      src={owner && owner.avatar}
-                      width='74'
-                      height='74'
+                      src={owner.avatar}
+                      width={offerOwnerPhoto.WIDTH}
+                      height={offerOwnerPhoto.HEIGHT}
                       alt='Host avatar'
                     />
                   </div>
-                  <span className='property__user-name'>{owner && owner.name}</span>
-                  {owner && owner.isPro && <span className="property__user-status">Pro</span>}
+                  <span className='property__user-name'>{owner.name}</span>
+                  {owner.isPro && <span className="property__user-status">Pro</span>}
                 </div>
                 <div className='property__description'>
                   <p className='property__text'>
@@ -127,7 +126,7 @@ function OfferPage({ offers, isAuthorized }: OfferPageProps): JSX.Element {
               </div>
               <section className='property__reviews reviews'>
                 <h2 className='reviews__title'>
-                  Reviews &middot; <span className='reviews__amount'>{reviews && reviews.length}</span>
+                  Reviews &middot; <span className='reviews__amount'>{reviews.length}</span>
                 </h2>
                 {reviews && <ReviewsList reviews={reviews} />}
                 {isAuthorized && <ReviewForm />}
@@ -135,7 +134,7 @@ function OfferPage({ offers, isAuthorized }: OfferPageProps): JSX.Element {
             </div>
           </div>
           <section className='property__map map'>
-            <Map offers={offers} city={cities[3]} selectedOffer={offers[3]} />
+            <Map offers={offers} city={cities[3]} selectedOffer={offer} />
           </section>
         </section>
         <div className='container'>

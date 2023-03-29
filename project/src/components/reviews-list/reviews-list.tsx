@@ -1,9 +1,9 @@
 import ReviewItem from '../review-item/review-item';
 import { Review } from '../../mocks/reviews';
+import { MAX_REVIEWS_COUNT, START_REVIEWS_COUNT } from '../../const';
 
 type ReviewsListProps = {
   reviews: Review[];
-  // review: Review;
 }
 
 function ReviewsList({ reviews }: ReviewsListProps): JSX.Element {
@@ -11,7 +11,7 @@ function ReviewsList({ reviews }: ReviewsListProps): JSX.Element {
     <ul className='reviews__list'>
       {reviews.map((review) => (
         <ReviewItem review={review} key={review.id} />
-      )).slice(0, 10)}
+      )).slice(START_REVIEWS_COUNT, MAX_REVIEWS_COUNT)}
     </ul>
   );
 }

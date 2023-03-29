@@ -1,6 +1,8 @@
 import { Offer } from '../../mocks/offers';
 import { Link } from 'react-router-dom';
-import PlaceCardInfo from '../place-card-info/place-card-info';
+import OfferCardInfo from '../offer-card-info/offer-card-info';
+//import cn from 'classnames';
+import { offerCardImage } from '../../const';
 
 type OfferCardProps = {
   offer: Offer;
@@ -11,12 +13,13 @@ function OfferCard({ offer }: OfferCardProps): JSX.Element {
     id,
     title,
     isPremium,
-    type,
     photos,
   } = offer;
 
   return (
-    <article key={id} className='cities__card place-card'>
+    //near-places__card
+    //near-places__image-wrapper
+    <article className='place-card place-card__cities'>
       {isPremium &&
         <div className='place-card__mark'>
           <span>Premium</span>
@@ -29,14 +32,14 @@ function OfferCard({ offer }: OfferCardProps): JSX.Element {
           <img
             className='place-card__image'
             src={photos[0].src}
-            width='260'
-            height='200'
-            alt={type}
+            width={offerCardImage.WIDTH}
+            height={offerCardImage.HEIGHT}
+            alt={title}
           />
         </Link>
       </div>
-      <PlaceCardInfo offer={offer} />
-    </article>
+      <OfferCardInfo offer={offer} />
+    </article >
   );
 }
 
