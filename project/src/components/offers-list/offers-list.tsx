@@ -1,26 +1,32 @@
-import { Offers, Offer } from '../../mocks/offers';
+import { Offers } from '../../mocks/offers';
 import OfferCard from '../offer-card/offer-card';
+import cn from 'classnames';
+import { START_NEAR_PLACES_AMOUNT } from '../../const';
 
 type OffersListProps = {
   offers: Offers;
-  onListItemHover: Offer;
-  className: string;
+  classNameList: string;
+  classNameArticle: string;
   classNameWrapper: string;
+  maxCardAmount: number;
+  setSelectedOffer: (id: string) => void;
 };
 
-function OffersList({ offers, onListItemHover, className, classNameWrapper }: OffersListProps): JSX.Element {
-  const listItemHoverHandler = (evt) => {
-    onListItemHover(evt.target.innerText);
-  };
-
+function OffersList({ offers, classNameList, classNameWrapper, classNameArticle, maxCardAmount, setSelectedOffer }: OffersListProps): JSX.Element {
   return (
-    <div className='cities__places-list places__list tabs__content'>
+    <div className={cn('places__list', classNameList)}>
       {
         offers.map((offer) => (
-          <OfferCard offer={offer} key={offer.id} onMouseEnter={listItemHoverHandler} className={className} classNameWrapper={classNameWrapper} />
-        ))
+          <OfferCard
+            offer={offer}
+            key={offer.id}
+            classNameWrapper={classNameWrapper}
+            classNameArticle={classNameArticle}
+            setSelectedOffer={setSelectedOffer}
+          />
+        )).slice(START_NEAR_PLACES_AMOUNT, maxCardAmount)
       }
-    </div>
+    </div >
   );
 }
 

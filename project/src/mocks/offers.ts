@@ -7,10 +7,14 @@ type Photo = {
   };
 
 type Location = {
-    lat: number;
-    lng: number;
+  lat: number;
+  lng: number;
+  zoom: number;
 }
-
+type City = {
+  location: Location;
+  name: string;
+}
 
 export type Offer = {
   id: string;
@@ -26,7 +30,7 @@ export type Offer = {
   photos: Photo[];
   owner: Person;
   reviews: Review[];
-  location: Location;
+  city: City;
 };
 
 export type Offers = Offer[];
@@ -81,9 +85,13 @@ export const offers: Offer[] = [
       isPro: false,
     },
     reviews,
-    location:{
-      lat: 52.3909553943508,
-      lng: 4.85309666406198,
+    city: {
+      location: {
+        lat: 52.377956,
+        lng:   4.897070,
+        zoom: 10,
+      },
+      name:'Amsterdam',
     },
   },
   {
@@ -109,9 +117,13 @@ export const offers: Offer[] = [
       isPro: false,
     },
     reviews,
-    location:{
-      lat: 52.3609553943508,
-      lng: 4.85309666406198,
+    city: {
+      location: {
+        lat:53.551086,
+        lng: 9.993682,
+        zoom: 10,
+      },
+      name: 'Hamburg',
     },
   },
   {
@@ -134,9 +146,13 @@ export const offers: Offer[] = [
       isPro: true,
     },
     reviews,
-    location:{
-      lat: 52.3909553943508,
-      lng: 4.929309666406198,
+    city: {
+      location: {
+        lat: 50.85045,
+        lng:  4.34878,
+        zoom: 10,
+      },
+      name:'Brussels',
     },
   },
   {
@@ -165,9 +181,13 @@ export const offers: Offer[] = [
       isPro: true,
     },
     reviews,
-    location:{
-      lat: 52.3809553943508,
-      lng: 4.939309666406198,
+    city: {
+      location: {
+        lat: 48.864716,
+        lng:  2.349014,
+        zoom: 10,
+      },
+      name:'Paris',
     },
   },
 ];

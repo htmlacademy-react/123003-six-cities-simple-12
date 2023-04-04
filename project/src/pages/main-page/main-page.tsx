@@ -2,7 +2,7 @@ import Tabs from '../../components/tabs/tabs';
 import { Helmet } from 'react-helmet-async';
 import OffersList from '../../components/offers-list/offers-list';
 import Header from '../../components/header/header';
-import { Offers, Offer } from '../../mocks/offers';
+import { Offers } from '../../mocks/offers';
 import Map from '../../components/map/map';
 import { cities } from '../../mocks/cities';
 import { useState } from 'react';
@@ -10,19 +10,10 @@ import { useState } from 'react';
 type MainPageProps = {
   offers: Offers;
   isAuthorized: boolean;
-  className: string;
-  classNameWrapper: string;
 };
 
-function MainPage({ offers, isAuthorized, className = 'cities__places-list', classNameWrapper = 'cities__image-wrapper' }: MainPageProps): JSX.Element {
-  const [selectedOffer, setSelectedOffer] = useState({});
-
-  const onListItemHover = (listItemName: string) => {
-    const currentOffer: Offer = offers.find((offer) =>
-      offer.title === listItemName,
-    );
-    setSelectedOffer(currentOffer);
-  };
+function MainPage({ offers, isAuthorized }: MainPageProps): JSX.Element {
+  const [selectedOffer, setSelectedOffer] = useState('0');
 
   return (
     <div className='page page--gray page--main'>
@@ -66,11 +57,21 @@ function MainPage({ offers, isAuthorized, className = 'cities__places-list', cla
                   </li>
                 </ul>
               </form>
-              <OffersList offers={offers} onListItemHover={onListItemHover} />
+              <OffersList
+                offers={offers}
+                classNameList='cities__places-list tabs__content'
+                classNameArticle='cities__card'
+                classNameWrapper='cities__image-wrapper'
+                maxCardAmount={offers.length}
+                setSelectedOffer={setSelectedOffer}
+              />
             </section>
             <div className='cities__right-section'>
               <section className='cities__map map'>
-                <Map offers={offers} city={cities[3]} selectedOffer={selectedOffer} className={className} classNameWrapper={classNameWrapper} />
+                <Map
+                  offers={offers}
+                  selectedOffer={selectedOffer}
+                />
               </section>
             </div>
           </div>
