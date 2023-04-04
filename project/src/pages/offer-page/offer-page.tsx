@@ -1,21 +1,26 @@
-import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import NearPlace from '../../components/near-place/near-place';
-import { Offer } from '../../mocks/offers';
+import NearPlacesList from '../../components/near-places-list/near-places-list';
 import ReviewForm from '../../components/review-form/review-form';
+import { RoomTypeToLabel, RATING_COEFFICIENT, offerOwnerPhoto } from '../../const';
+import ReviewsList from '../../components/reviews-list/reviews-list';
+import Map from '../../components/map/map';
+import { cities } from '../../mocks/cities';
+import { Offer, Offers } from '../../mocks/offers';
 
 type OfferPageProps = {
+  offers: Offers;
   offer: Offer;
   isAuthorized: boolean;
+  className: string;
+  classNameWrapper: string;
 };
 
-function OfferPage({ offer, isAuthorized }: OfferPageProps): JSX.Element {
+function OfferPage({ offer, isAuthorized, offers, className = 'near-places__list', classNameWrapper = 'near-places__image-wrapper' }: OfferPageProps): JSX.Element {
   const {
     title,
     description,
     isPremium,
-    type,
     rating,
     bedrooms,
     guests,
@@ -24,12 +29,8 @@ function OfferPage({ offer, isAuthorized }: OfferPageProps): JSX.Element {
     photos,
     owner,
     reviews,
+    type,
   } = offer;
-  const params = useParams();
-  if (params.id) {
-    // eslint-disable-next-line no-console
-    console.log(params);
-  }
 
   return (
     <>
@@ -41,7 +42,7 @@ function OfferPage({ offer, isAuthorized }: OfferPageProps): JSX.Element {
         <section className='property'>
           <div className='property__gallery-container container'>
             <div className='property__gallery'>
-              {photos.map((photo, index) => {
+              {photos && photos.map((photo, index) => {
                 const keyValue = `${index}`;
                 return (
                   <div key={keyValue} className='property__image-wrapper'>
@@ -57,13 +58,10 @@ function OfferPage({ offer, isAuthorized }: OfferPageProps): JSX.Element {
           </div>
           <div className='property__container container'>
             <div className='property__wrapper'>
-              {isPremium
-                ? (
-                  <div className='property__mark'>
-                    <span>Premium</span>
-                  </div>
-                )
-                : ''}
+              {isPremium &&
+                <div className='property__mark'>
+                  <span>Premium</span>
+                </div>}
               <div className='property__name-wrapper'>
                 <h1 className='property__name'>
                   {title}
@@ -71,7 +69,7 @@ function OfferPage({ offer, isAuthorized }: OfferPageProps): JSX.Element {
               </div>
               <div className='property__rating rating'>
                 <div className='property__stars rating__stars'>
-                  <span style={{ width: `${rating * 20}% ` }}></span>
+                  <span style={rating ? { width: `${rating * RATING_COEFFICIENT}% ` } : { width: `${RATING_COEFFICIENT}% ` }}></span>
                   <span className='visually-hidden'>Rating</span>
                 </div>
                 <span className='property__rating-value rating__value'>
@@ -80,7 +78,7 @@ function OfferPage({ offer, isAuthorized }: OfferPageProps): JSX.Element {
               </div>
               <ul className='property__features'>
                 <li className='property__feature property__feature--entire'>
-                  {type}
+                  {RoomTypeToLabel[type]}
                 </li>
                 <li className='property__feature property__feature--bedrooms'>
                   {bedrooms} Bedrooms
@@ -111,15 +109,13 @@ function OfferPage({ offer, isAuthorized }: OfferPageProps): JSX.Element {
                     <img
                       className='property__avatar user__avatar'
                       src={owner.avatar}
-                      width='74'
-                      height='74'
+                      width={offerOwnerPhoto.WIDTH}
+                      height={offerOwnerPhoto.HEIGHT}
                       alt='Host avatar'
                     />
                   </div>
                   <span className='property__user-name'>{owner.name}</span>
-                  {owner.isPro
-                    ? '<span className="property__user-status">Pro</span>'
-                    : ''}
+                  {owner.isPro && <span className="property__user-status">Pro</span>}
                 </div>
                 <div className='property__description'>
                   <p className='property__text'>
@@ -134,65 +130,21 @@ function OfferPage({ offer, isAuthorized }: OfferPageProps): JSX.Element {
                 <h2 className='reviews__title'>
                   Reviews &middot; <span className='reviews__amount'>{reviews.length}</span>
                 </h2>
-                <ul className='reviews__list'>
-                  {reviews.map((review) => {
-                    const keyValue = `${review.id}`;
-                    return (
-                      <li key={keyValue} className='reviews__item'>
-                        <div className='reviews__user user'>
-                          <div className='reviews__avatar-wrapper user__avatar-wrapper'>
-                            <img
-                              className='reviews__avatar user__avatar'
-                              src={review.author.avatar}
-                              width='54'
-                              height='54'
-                              alt='Reviews avatar'
-                            />
-                          </div>
-                          <span className='reviews__user-name'>{review.author.name}</span>
-                        </div>
-                        <div className='reviews__info'>
-                          <div className='reviews__rating rating'>
-                            <div className='reviews__stars rating__stars'>
-                              {
-                                review.author.rating
-                                  ? (
-                                    <span style={{ width: `${review.author.rating * 20}% ` }}></span>
-                                  )
-                                  : ''
-                              }
-                              <span className='visually-hidden'>Rating</span>
-                            </div>
-                          </div>
-                          <p className='reviews__text'>
-                            {review.text}
-                          </p>
-                          <time className='reviews__time' dateTime={review.date}>
-                            {review.date}
-                          </time>
-                        </div>
-                      </li>
-                    );
-                  }).slice(0, 10)}
-                </ul>
-                {isAuthorized
-                  ? <ReviewForm />
-                  : ''}
+                {reviews && <ReviewsList reviews={reviews} />}
+                {isAuthorized && <ReviewForm />}
               </section>
             </div>
           </div>
-          <section className='property__map map'></section>
+          <section className='property__map map'>
+            <Map offers={offers} city={cities[3]} selectedOffer={offer} />
+          </section>
         </section>
         <div className='container'>
           <section className='near-places places'>
             <h2 className='near-places__title'>
               Other places in the neighbourhood
             </h2>
-            <div className='near-places__list places__list'>
-              <NearPlace />
-              <NearPlace />
-              <NearPlace />
-            </div>
+            <NearPlacesList offers={offers} className={className} classNameWrapper={classNameWrapper} />
           </section>
         </div>
       </main>

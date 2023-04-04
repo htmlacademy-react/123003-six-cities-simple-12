@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Sprite from '../svg-sprite/svg-sprite';
 
-function Layout(): JSX.Element {
+function Layout() {
   return (
     <>
       <Sprite />
