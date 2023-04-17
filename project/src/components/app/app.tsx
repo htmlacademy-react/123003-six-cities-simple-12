@@ -24,7 +24,7 @@ function App({ offers, isAuthorized }: AppScreenProps): JSX.Element {
           >
             <Route
               index
-              element={<MainPage offers={offers} isAuthorized={isAuthorized} />}
+              element={<MainPage isAuthorized={isAuthorized} />}
             />
             <Route
               path={AppRoute.Login}

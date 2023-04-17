@@ -1,19 +1,20 @@
-import Tabs from '../../components/tabs/tabs';
 import { Helmet } from 'react-helmet-async';
 import OffersList from '../../components/offers-list/offers-list';
 import Header from '../../components/header/header';
-import { Offers } from '../../mocks/offers';
 import Map from '../../components/map/map';
-import { cities } from '../../mocks/cities';
+import { useAppSelector } from '../../hooks/index';
 import { useState } from 'react';
+import { DEFAULT_CITY } from '../../const';
+import Cities from '../../components/cities/cities';
 
 type MainPageProps = {
-  offers: Offers;
   isAuthorized: boolean;
 };
 
-function MainPage({ offers, isAuthorized }: MainPageProps): JSX.Element {
-  const [selectedOffer, setSelectedOffer] = useState('0');
+function MainPage({ isAuthorized }: MainPageProps): JSX.Element {
+  const [selectedOffer, setSelectedOffer] = useState(DEFAULT_CITY);
+  const selectedOffers = useAppSelector((state) => state.selectedOffers);
+  const selectedCity = useAppSelector((state) => state.selectedCity);
 
   return (
     <div className='page page--gray page--main'>
@@ -23,13 +24,13 @@ function MainPage({ offers, isAuthorized }: MainPageProps): JSX.Element {
       <Header isAuthorized={isAuthorized} />
       <main className='page__main page__main--index'>
         <h1 className='visually-hidden'>Cities</h1>
-        <Tabs offers={offers} />
+        <Cities selectedCity={selectedCity} />
         <div className='cities'>
           <div className='cities__places-container container'>
             <section className='cities__places places'>
               <h2 className='visually-hidden'>Places</h2>
               <b className='places__found'>
-                {offers.length} places to stay in {cities[3].name}
+                {selectedOffers.length} places to stay in {selectedCity}
               </b>
               <form className='places__sorting' action='#' method='get'>
                 <span className='places__sorting-caption'>Sort by</span>
@@ -58,18 +59,18 @@ function MainPage({ offers, isAuthorized }: MainPageProps): JSX.Element {
                 </ul>
               </form>
               <OffersList
-                offers={offers}
+                offers={selectedOffers}
                 classNameList='cities__places-list tabs__content'
                 classNameArticle='cities__card'
                 classNameWrapper='cities__image-wrapper'
-                maxCardAmount={offers.length}
+                maxCardAmount={selectedOffers.length}
                 setSelectedOffer={setSelectedOffer}
               />
             </section>
             <div className='cities__right-section'>
               <section className='cities__map map'>
                 <Map
-                  offers={offers}
+                  offers={selectedOffers}
                   selectedOffer={selectedOffer}
                 />
               </section>
