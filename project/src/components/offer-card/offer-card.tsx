@@ -6,11 +6,12 @@ import { offerCardImage } from '../../const';
 
 type OfferCardProps = {
   offer: Offer;
-  className: string;
+  classNameArticle: string;
   classNameWrapper: string;
+  setSelectedOffer: (id: string) => void;
 }
 
-function OfferCard({ offer, className, classNameWrapper }: OfferCardProps): JSX.Element {
+function OfferCard({ offer, classNameArticle, classNameWrapper, setSelectedOffer }: OfferCardProps): JSX.Element {
   const {
     id,
     title,
@@ -18,10 +19,12 @@ function OfferCard({ offer, className, classNameWrapper }: OfferCardProps): JSX.
     photos,
   } = offer;
 
+  const onMouseEnter = () => {
+    setSelectedOffer(id);
+  };
+
   return (
-    //near-places__card
-    //near-places__image-wrapper
-    <article className={cn('place-card__cities', className)}>
+    <article className={cn('place-card', classNameArticle)} onMouseEnter={onMouseEnter}>
       {isPremium &&
         <div className='place-card__mark'>
           <span>Premium</span>

@@ -6,18 +6,19 @@ import ErrorPage from '../../pages/error-page/error-page';
 type OfferPageWrapperProps = {
   offers: Offers;
   isAuthorized: boolean;
-  className: string;
-  classNameWrapper: string;
 };
 
-function OfferPageWrapper({ offers, isAuthorized, className, classNameWrapper }: OfferPageWrapperProps): JSX.Element {
+function OfferPageWrapper({ offers, isAuthorized }: OfferPageWrapperProps): JSX.Element {
   const findOffer = (id: string) => offers.find((offer) => offer.id === id);
-
   const { id } = useParams();
-  const offer = findOffer(id);
-  if (offer) {
-    return <OfferPage offers={offers} offer={offer} isAuthorized={isAuthorized} className={className} classNameWrapper={classNameWrapper} />;
+
+  if (id) {
+    const offer = findOffer(id);
+    if (offer) {
+      return <OfferPage offers={offers} offer={offer} isAuthorized={isAuthorized} />;
+    }
   }
+
   return <ErrorPage />;
 }
 

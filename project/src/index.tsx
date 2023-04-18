@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { offers } from './mocks/offers';
+import { Provider } from 'react-redux';
+import { store } from './store/index';
 
 const Setting = {
   isAuthorized: true,
@@ -13,9 +15,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App
-      isAuthorized={Setting.isAuthorized}
-      offers={offers}
-    />
+    <Provider store={store}>
+      <App
+        isAuthorized={Setting.isAuthorized}
+        offers={offers}
+      />
+    </Provider>
   </React.StrictMode>
 );

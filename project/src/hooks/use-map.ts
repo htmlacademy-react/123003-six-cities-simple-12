@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import leaflet from 'leaflet';
+import { Offer } from '../mocks/offers';
+import {URL_TEMPLATE, TILE_LAYER_ATTRIBUTION } from '../const';
 
-function useMap(mapRef:string, city:string) {
+function useMap(mapRef: MutableRefObject<HTMLElement | null>, offer: Offer) {
   const [map, setMap] = useState(null);
   const isRenderedRef = useRef(false);
 
@@ -9,17 +11,16 @@ function useMap(mapRef:string, city:string) {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: city.lat,
-          lng: city.lng,
+          lat: offer.city.location.lat,
+          lng: offer.city.location.lng,
         },
-        zoom: city.zoom,
+        zoom: offer.city.location.zoom,
       });
 
       leaflet
-        .tileLayer(
-          'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+        .tileLayer(URL_TEMPLATE,
           {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            attribution: TILE_LAYER_ATTRIBUTION,
           },
         )
         .addTo(instance);
@@ -27,7 +28,7 @@ function useMap(mapRef:string, city:string) {
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, city]);
+  }, [mapRef, offer]);
 
   return map;
 }

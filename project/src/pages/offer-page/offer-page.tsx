@@ -1,22 +1,22 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '../../components/header/header';
-import NearPlacesList from '../../components/near-places-list/near-places-list';
+import OffersList from '../../components/offers-list/offers-list';
 import ReviewForm from '../../components/review-form/review-form';
 import { RoomTypeToLabel, RATING_COEFFICIENT, offerOwnerPhoto } from '../../const';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
-import { cities } from '../../mocks/cities';
 import { Offer, Offers } from '../../mocks/offers';
+import { MAX_NEAR_PLACES_AMOUNT } from '../../const';
+import { useState } from 'react';
 
 type OfferPageProps = {
   offers: Offers;
   offer: Offer;
   isAuthorized: boolean;
-  className: string;
-  classNameWrapper: string;
 };
 
-function OfferPage({ offer, isAuthorized, offers, className = 'near-places__list', classNameWrapper = 'near-places__image-wrapper' }: OfferPageProps): JSX.Element {
+function OfferPage({ offer, isAuthorized, offers }: OfferPageProps): JSX.Element {
+  const [selectedOffer, setSelectedOffer] = useState('0');
   const {
     title,
     description,
@@ -136,7 +136,10 @@ function OfferPage({ offer, isAuthorized, offers, className = 'near-places__list
             </div>
           </div>
           <section className='property__map map'>
-            <Map offers={offers} city={cities[3]} selectedOffer={offer} />
+            <Map
+              offers={offers}
+              selectedOffer={selectedOffer}
+            />
           </section>
         </section>
         <div className='container'>
@@ -144,7 +147,14 @@ function OfferPage({ offer, isAuthorized, offers, className = 'near-places__list
             <h2 className='near-places__title'>
               Other places in the neighbourhood
             </h2>
-            <NearPlacesList offers={offers} className={className} classNameWrapper={classNameWrapper} />
+            <OffersList
+              offers={offers}
+              classNameList='near-places__list'
+              classNameArticle='near-places__card'
+              classNameWrapper='near-places__image-wrapper'
+              maxCardAmount={MAX_NEAR_PLACES_AMOUNT}
+              setSelectedOffer={setSelectedOffer}
+            />
           </section>
         </div>
       </main>
