@@ -13,26 +13,24 @@ type MainPageProps = {
 };
 
 function MainPage({ isAuthorized }: MainPageProps): JSX.Element {
-  let offers = useAppSelector((state) => state.filteredOffers);
+  const offers = useAppSelector((state) => state.filteredOffers);
+  let sorted = [...offers];
   const selectedCity = useAppSelector((state) => state.selectedCity);
   const activeSortType = useAppSelector((state) => state.activeSortType);
   const [selectedOffer, setSelectedOffer] = useState(selectedCity);
 
   switch (activeSortType) {
     case SortTypeToLabel.POPULAR:
-      offers = [...offers];
+      sorted = [...offers];
       break;
     case SortTypeToLabel.HIGHT_TO_LOW:
-      offers.sort((a, b) => b.price - a.price);
+      sorted.sort((a, b) => b.price - a.price);
       break;
     case SortTypeToLabel.LOW_TO_HIGHT:
-      offers.sort((a, b) => a.price - b.price);
+      sorted.sort((a, b) => a.price - b.price);
       break;
     case SortTypeToLabel.TOP:
-      offers.sort((a, b) => b.rating - a.rating);
-      break;
-    default:
-      offers = [...offers];
+      sorted.sort((a, b) => b.rating - a.rating);
       break;
   }
 
@@ -54,7 +52,7 @@ function MainPage({ isAuthorized }: MainPageProps): JSX.Element {
               </b>
               <Sort activeSortType={activeSortType} />
               <OffersList
-                offers={offers}
+                offers={sorted}
                 classNameList='cities__places-list tabs__content'
                 classNameArticle='cities__card'
                 classNameWrapper='cities__image-wrapper'
@@ -65,6 +63,7 @@ function MainPage({ isAuthorized }: MainPageProps): JSX.Element {
             <div className='cities__right-section'>
               <section className='cities__map map'>
                 <Map
+                  selectedCity={selectedCity}
                   offers={offers}
                   selectedOffer={selectedOffer}
                 />

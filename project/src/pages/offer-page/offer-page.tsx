@@ -3,6 +3,7 @@ import Header from '../../components/header/header';
 import OffersList from '../../components/offers-list/offers-list';
 import ReviewForm from '../../components/review-form/review-form';
 import { RoomTypeToLabel, RATING_COEFFICIENT, offerOwnerPhoto } from '../../const';
+import { useAppSelector } from '../../hooks/index';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import { Offer, Offers } from '../../mocks/offers';
@@ -17,6 +18,7 @@ type OfferPageProps = {
 };
 
 function OfferPage({ offers, offer, isAuthorized }: OfferPageProps): JSX.Element {
+  const selectedCity = useAppSelector((state) => state.selectedCity);
   const [selectedOffer, setSelectedOffer] = useState('0');
   const {
     title,
@@ -138,6 +140,7 @@ function OfferPage({ offers, offer, isAuthorized }: OfferPageProps): JSX.Element
           </div>
           <section className='property__map map'>
             <Map
+              selectedCity={selectedCity}
               offers={offers}
               selectedOffer={selectedOffer}
             />

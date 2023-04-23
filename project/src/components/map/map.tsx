@@ -8,6 +8,7 @@ import { Offers } from '../../mocks/offers';
 type MapProps = {
   selectedOffer: string;
   offers: Offers;
+  selectedCity: string;
 };
 
 const defaultCustomIcon = leaflet.icon({
@@ -22,10 +23,9 @@ const currentCustomIcon = leaflet.icon({
   iconAnchor: [20, 40]
 });
 
-function Map({ selectedOffer, offers }: MapProps): JSX.Element {
+function Map({ selectedCity, selectedOffer, offers }: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
-
 
   useEffect(() => {
     if (map) {
@@ -42,7 +42,7 @@ function Map({ selectedOffer, offers }: MapProps): JSX.Element {
           .addTo(map);
       });
     }
-  }, [map, offers, selectedOffer]);
+  }, [map, offers, selectedOffer, selectedCity]);
 
   return (
     <div

@@ -34,9 +34,9 @@ function Sort({ activeSortType }: SortProps): JSX.Element {
             className={cn('places__option', type === activeSortType && 'places__option--active')}
             tabIndex={0}
             key={type}
-            onClick={() => {
+            onClick={(evt) => {
+              evt.preventDefault();
               dispatch(setActiveSortType(type));
-              // applySort(type);
               setSortListOpen(false);
             }}
           >

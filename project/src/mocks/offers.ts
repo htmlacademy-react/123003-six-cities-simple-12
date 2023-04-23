@@ -62,7 +62,7 @@ export const photos = [
   },
 ];
 
-export const offers: Offer[] = [
+export const offers: Offers = [
   {
     id: '1',
     title: 'Cozy room in the city center',
@@ -190,5 +190,111 @@ export const offers: Offer[] = [
       name:'Paris',
     },
   },
+  {
+    id: '5',
+    title: 'Premium hotel',
+    description: 'All inclusive',
+    isPremium: false,
+    type: RoomType.Hotel,
+    rating: 1,
+    bedrooms: 2,
+    guests: 4,
+    price: 3000,
+    options: [
+      'Wi-Fi',
+      'Fridge',
+      'Dishwasher',
+      'Kitchen',
+      'Coffee machine',
+      'Cabel TV',
+      'Baby seat',
+    ],
+    photos,
+    owner: {
+      name: 'Oliver',
+      avatar: `${PHOTO_URL}?rnd=${Math.random()}`,
+      isPro: true,
+    },
+    reviews,
+    city: {
+      location: {
+        lat: 48.864716,
+        lng:  2.349014,
+        zoom: 10,
+      },
+      name:'Paris',
+    },
+  },
+  {
+    id: '6',
+    title: 'Premium hotel',
+    description: 'All inclusive',
+    isPremium: false,
+    type: RoomType.Hotel,
+    rating: 2,
+    bedrooms: 2,
+    guests: 4,
+    price: 16000,
+    options: [
+      'Wi-Fi',
+      'Fridge',
+      'Dishwasher',
+      'Kitchen',
+      'Coffee machine',
+      'Cabel TV',
+      'Baby seat',
+    ],
+    photos,
+    owner: {
+      name: 'Oliver',
+      avatar: `${PHOTO_URL}?rnd=${Math.random()}`,
+      isPro: true,
+    },
+    reviews,
+    city: {
+      location: {
+        lat: 48.864716,
+        lng:  2.349014,
+        zoom: 10,
+      },
+      name:'Paris',
+    },
+  },
+  {
+    id: '7',
+    title: 'Premium hotel',
+    description: 'All inclusive',
+    isPremium: false,
+    type: RoomType.Hotel,
+    rating: 3,
+    bedrooms: 2,
+    guests: 4,
+    price: 18000,
+    options: [
+      'Wi-Fi',
+      'Fridge',
+      'Dishwasher',
+      'Kitchen',
+      'Coffee machine',
+      'Cabel TV',
+      'Baby seat',
+    ],
+    photos,
+    owner: {
+      name: 'Oliver',
+      avatar: `${PHOTO_URL}?rnd=${Math.random()}`,
+      isPro: true,
+    },
+    reviews,
+    city: {
+      location: {
+        lat: 48.864716,
+        lng:  2.349014,
+        zoom: 10,
+      },
+      name:'Paris',
+    },
+  },
+
 ];
 
