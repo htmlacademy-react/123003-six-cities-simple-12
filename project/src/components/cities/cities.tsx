@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { cities } from '../../mocks/cities';
-import { setSelectedCity } from '../../store/action';
+import { setSelectedCity, setSelectedOffers } from '../../store/action';
 import { useAppDispatch } from '../../hooks/index';
 import cn from 'classnames';
 
@@ -8,7 +8,7 @@ type CitiesProps = {
   selectedCity: string;
 }
 
-const Cities = ({ selectedCity }: CitiesProps): JSX.Element => {
+function Cities({ selectedCity }: CitiesProps): JSX.Element {
   const dispatch = useAppDispatch();
 
   return (
@@ -28,8 +28,15 @@ const Cities = ({ selectedCity }: CitiesProps): JSX.Element => {
                   title={`/${city.name}`}
                   onClick={(evt) => {
                     evt.preventDefault();
-                    dispatch(setSelectedCity());
+                    dispatch(setSelectedCity(city.name));
+                    dispatch(setSelectedOffers(selectedCity));
                   }}
+                  onLoad={
+                    (evt) => {
+                      evt.preventDefault();
+                      dispatch(setSelectedOffers(selectedCity));
+                    }
+                  }
                 >
                   <span>{city.name}</span>
                 </Link>
@@ -40,6 +47,6 @@ const Cities = ({ selectedCity }: CitiesProps): JSX.Element => {
       </section>
     </div >
   );
-};
+}
 
 export default Cities;

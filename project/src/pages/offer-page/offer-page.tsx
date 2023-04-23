@@ -9,13 +9,14 @@ import { Offer, Offers } from '../../mocks/offers';
 import { MAX_NEAR_PLACES_AMOUNT } from '../../const';
 import { useState } from 'react';
 
+
 type OfferPageProps = {
-  offers: Offers;
   offer: Offer;
   isAuthorized: boolean;
+  offers: Offers;
 };
 
-function OfferPage({ offer, isAuthorized, offers }: OfferPageProps): JSX.Element {
+function OfferPage({ offers, offer, isAuthorized }: OfferPageProps): JSX.Element {
   const [selectedOffer, setSelectedOffer] = useState('0');
   const {
     title,

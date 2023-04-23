@@ -1,13 +1,13 @@
 import leaflet from 'leaflet';
 import { useRef, useEffect } from 'react';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
-import { Offers } from '../../mocks/offers';
 import useMap from '../../hooks/use-map';
 import 'leaflet/dist/leaflet.css';
+import { Offers } from '../../mocks/offers';
 
 type MapProps = {
-  offers: Offers;
   selectedOffer: string;
+  offers: Offers;
 };
 
 const defaultCustomIcon = leaflet.icon({
@@ -22,9 +22,10 @@ const currentCustomIcon = leaflet.icon({
   iconAnchor: [20, 40]
 });
 
-function Map({ offers, selectedOffer }: MapProps): JSX.Element {
+function Map({ selectedOffer, offers }: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, offers[0]);
+
 
   useEffect(() => {
     if (map) {
