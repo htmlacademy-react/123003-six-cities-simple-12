@@ -3,19 +3,22 @@ import Header from '../../components/header/header';
 import OffersList from '../../components/offers-list/offers-list';
 import ReviewForm from '../../components/review-form/review-form';
 import { RoomTypeToLabel, RATING_COEFFICIENT, offerOwnerPhoto } from '../../const';
+import { useAppSelector } from '../../hooks/index';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import { Offer, Offers } from '../../mocks/offers';
 import { MAX_NEAR_PLACES_AMOUNT } from '../../const';
 import { useState } from 'react';
 
+
 type OfferPageProps = {
-  offers: Offers;
   offer: Offer;
   isAuthorized: boolean;
+  offers: Offers;
 };
 
-function OfferPage({ offer, isAuthorized, offers }: OfferPageProps): JSX.Element {
+function OfferPage({ offers, offer, isAuthorized }: OfferPageProps): JSX.Element {
+  const selectedCity = useAppSelector((state) => state.selectedCity);
   const [selectedOffer, setSelectedOffer] = useState('0');
   const {
     title,
@@ -137,6 +140,7 @@ function OfferPage({ offer, isAuthorized, offers }: OfferPageProps): JSX.Element
           </div>
           <section className='property__map map'>
             <Map
+              selectedCity={selectedCity}
               offers={offers}
               selectedOffer={selectedOffer}
             />
