@@ -3,7 +3,6 @@ import { Offers, Reviews } from '../types/offer';
 import { AuthorizationStatus } from '../const';
 
 export const setSelectedCity = createAction<string>('setSelectedCity');
-export const setSelectedOffers = createAction<string>('setSelectedOffers');
 export const setActiveSortType = createAction<string>('setActiveSortType');
 export const loadOffers = createAction<Offers>('loadOffers');
 export const loadReviews = createAction<Reviews>('loadReviews');

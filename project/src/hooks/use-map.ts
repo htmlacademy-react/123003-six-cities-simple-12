@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import leaflet from 'leaflet';
 import { Offer } from '../types/offer';
-import {URL_TEMPLATE, TILE_LAYER_ATTRIBUTION } from '../const';
+import { URL_TEMPLATE, TILE_LAYER_ATTRIBUTION } from '../const';
 
 function useMap(mapRef: MutableRefObject<HTMLElement | null>, offer: Offer) {
   const [map, setMap] = useState(null);

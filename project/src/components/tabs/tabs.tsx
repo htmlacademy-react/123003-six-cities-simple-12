@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { setSelectedCity, setSelectedOffers } from '../../store/action';
+import { setSelectedCity } from '../../store/action';
 import { useAppDispatch } from '../../hooks/index';
 import cn from 'classnames';
 import { Cities } from '../../const';
@@ -27,12 +27,11 @@ function Tabs({ selectedCity }: TabsProps): JSX.Element {
                 onClick={(evt) => {
                   evt.preventDefault();
                   dispatch(setSelectedCity(city));
-                  dispatch(setSelectedOffers(selectedCity));
                 }}
                 onLoad={
                   (evt) => {
                     evt.preventDefault();
-                    dispatch(setSelectedOffers(selectedCity));
+                    dispatch(setSelectedCity(city));
                   }
                 }
               >

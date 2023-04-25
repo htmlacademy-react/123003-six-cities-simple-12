@@ -81,7 +81,7 @@ export enum APIRoute {
   Offers = '/hotels',
   Login = '/login',
   Logout = '/logout',
-  Comments = '/comments/{hotelId}',
+  Comments = '/comments',
 }
 
 export enum Cities {
