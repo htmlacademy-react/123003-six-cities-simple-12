@@ -8,7 +8,10 @@ import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import { Offer, Offers } from '../../types/offer';
 import { MAX_NEAR_PLACES_AMOUNT } from '../../const';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { fetchReviewAction } from '../../store/api-actions';
+import { useAppDispatch } from '../../hooks/index';
 
 type OfferPageProps = {
   offer: Offer;
@@ -16,6 +19,7 @@ type OfferPageProps = {
 };
 
 function OfferPage({ offers, offer }: OfferPageProps): JSX.Element {
+  const offerId = Number(useParams().id);
   const selectedCity = useAppSelector((state) => state.selectedCity);
   const reviews = useAppSelector((state) => state.reviews);
   const [selectedOffer, setSelectedOffer] = useState('0');
@@ -32,6 +36,10 @@ function OfferPage({ offers, offer }: OfferPageProps): JSX.Element {
     owner,
     type,
   } = offer;
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchReviewAction(offerId));
+  }, [dispatch, offerId]);
 
   return (
     <>
