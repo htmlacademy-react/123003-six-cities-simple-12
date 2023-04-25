@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
 import { Provider } from 'react-redux';
 import { store } from './store/index';
+import ErrorMessage from './components/error-message/error-message';
+import { fetchOfferAction, fetchReviewAction, checkAuthAction } from './store/api-actions';
 
-const Setting = {
-  isAuthorized: true,
-} as const;
+store.dispatch(fetchOfferAction());
+store.dispatch(fetchReviewAction());
+store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,9 +17,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
-        isAuthorized={Setting.isAuthorized}
-      />
+      <ErrorMessage />
+      <App />
     </Provider>
   </React.StrictMode>
 );

@@ -4,15 +4,11 @@ import Header from '../../components/header/header';
 import Map from '../../components/map/map';
 import { useAppSelector } from '../../hooks/index';
 import { useState } from 'react';
-import Cities from '../../components/cities/cities';
+import Cities from '../../components/tabs/tabs';
 import Sort from '../../components/sort/sort';
 import { SortTypeToLabel } from '../../const';
 
-type MainPageProps = {
-  isAuthorized: boolean;
-};
-
-function MainPage({ isAuthorized }: MainPageProps): JSX.Element {
+function MainPage(): JSX.Element {
   const offers = useAppSelector((state) => state.filteredOffers);
   let sorted = [...offers];
   const selectedCity = useAppSelector((state) => state.selectedCity);
@@ -39,7 +35,7 @@ function MainPage({ isAuthorized }: MainPageProps): JSX.Element {
       <Helmet>
         <title>6 cities - Places to stay</title>
       </Helmet>
-      <Header isAuthorized={isAuthorized} />
+      <Header />
       <main className='page__main page__main--index'>
         <h1 className='visually-hidden'>Cities</h1>
         <Cities selectedCity={selectedCity} />

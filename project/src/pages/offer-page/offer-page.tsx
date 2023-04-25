@@ -6,19 +6,18 @@ import { RoomTypeToLabel, RATING_COEFFICIENT, offerOwnerPhoto } from '../../cons
 import { useAppSelector } from '../../hooks/index';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
-import { Offer, Offers } from '../../mocks/offers';
+import { Offer, Offers } from '../../types/offer';
 import { MAX_NEAR_PLACES_AMOUNT } from '../../const';
 import { useState } from 'react';
 
-
 type OfferPageProps = {
   offer: Offer;
-  isAuthorized: boolean;
   offers: Offers;
 };
 
-function OfferPage({ offers, offer, isAuthorized }: OfferPageProps): JSX.Element {
+function OfferPage({ offers, offer }: OfferPageProps): JSX.Element {
   const selectedCity = useAppSelector((state) => state.selectedCity);
+  const reviews = useAppSelector((state) => state.reviews);
   const [selectedOffer, setSelectedOffer] = useState('0');
   const {
     title,
@@ -31,7 +30,6 @@ function OfferPage({ offers, offer, isAuthorized }: OfferPageProps): JSX.Element
     options,
     photos,
     owner,
-    reviews,
     type,
   } = offer;
 
@@ -40,7 +38,7 @@ function OfferPage({ offers, offer, isAuthorized }: OfferPageProps): JSX.Element
       <Helmet>
         <title>6 cities - {title}</title>
       </Helmet>
-      <Header isAuthorized={isAuthorized} />
+      <Header />
       <main className='page__main page__main--property'>
         <section className='property'>
           <div className='property__gallery-container container'>
@@ -134,7 +132,7 @@ function OfferPage({ offers, offer, isAuthorized }: OfferPageProps): JSX.Element
                   Reviews &middot; <span className='reviews__amount'>{reviews.length}</span>
                 </h2>
                 {reviews && <ReviewsList reviews={reviews} />}
-                {isAuthorized && <ReviewForm />}
+                <ReviewForm />
               </section>
             </div>
           </div>

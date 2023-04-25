@@ -1,4 +1,4 @@
-import { Offers } from '../../mocks/offers';
+import { Offers } from '../../types/offer';
 import OfferCard from '../offer-card/offer-card';
 import cn from 'classnames';
 import { START_NEAR_PLACES_AMOUNT } from '../../const';

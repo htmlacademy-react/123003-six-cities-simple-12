@@ -1,5 +1,5 @@
 import ReviewItem from '../review-item/review-item';
-import { Review } from '../../mocks/reviews';
+import { Review } from '../../types/offer';
 import { MAX_REVIEWS_AMOUNT, START_REVIEWS_AMOUNT } from '../../const';
 
 type ReviewsListProps = {
