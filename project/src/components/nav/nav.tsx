@@ -1,6 +1,10 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { logoutAction } from '../../store/api-actions';
 
 function Nav() {
+  const dispatch = useAppDispatch();
+
   return (
     <nav className='header__nav'>
       <ul className='header__nav-list'>
@@ -13,13 +17,17 @@ function Nav() {
           </div>
         </li>
         <li className='header__nav-item'>
-          <NavLink
+          <Link
             to='/login'
             title='/login'
             className='header__nav-link'
+            onClick={(evt) => {
+              evt.preventDefault();
+              dispatch(logoutAction());
+            }}
           >
             <span className='header__signout'>Sign out</span>
-          </NavLink>
+          </Link>
         </li>
       </ul>
     </nav>

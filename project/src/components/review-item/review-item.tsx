@@ -7,7 +7,7 @@ type ReviewItemProps = {
 
 function ReviewItem({ review }: ReviewItemProps): JSX.Element {
   const { id, author, text, date } = review;
-  const { rating, avatar, name } = author;
+  const { rating, avatarUrl, name } = author;
 
   return (
     <li key={id} className='reviews__item'>
@@ -15,7 +15,7 @@ function ReviewItem({ review }: ReviewItemProps): JSX.Element {
         <div className='reviews__avatar-wrapper user__avatar-wrapper'>
           <img
             className='reviews__avatar user__avatar'
-            src={avatar}
+            src={avatarUrl}
             width={reviewAvatarPhoto.WIDTH}
             height={reviewAvatarPhoto.HEIGHT}
             alt='Reviews avatar'

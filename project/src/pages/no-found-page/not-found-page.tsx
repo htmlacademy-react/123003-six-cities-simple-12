@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import './error-page.css';
+import './not-found-page.css';
 
-function ErrorPage(): JSX.Element {
+function NotFoundPage(): JSX.Element {
   return (
     <div className='page page--gray page--404'>
       <Helmet>
@@ -19,4 +19,4 @@ function ErrorPage(): JSX.Element {
   );
 }
 
-export default ErrorPage;
+export default NotFoundPage;

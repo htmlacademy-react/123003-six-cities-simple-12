@@ -93,4 +93,3 @@ export enum Cities {
   Dusseldorf = 'Dusseldorf'
 }
 
-export const TIMEOUT_SHOW_ERROR = 2000;

@@ -1,8 +1,7 @@
 import {RoomType} from '../const';
 
-type Photo = {
+type Image = {
     src: string;
-    title: string;
 };
 
 type Location = {
@@ -17,7 +16,7 @@ type City = {
 
 type Person = {
   name: string;
-  avatar: string;
+  avatarUrl: string;
   isPro?: boolean;
   rating?: number;
 };
@@ -39,11 +38,11 @@ export type Offer = {
   type: RoomType;
   rating: number;
   bedrooms: number;
-  guests: number;
+  maxAdults: number;
   price: number;
-  options: string[];
-  photos: Photo[];
-  owner: Person;
+  goods: string[];
+  images: Image[];
+  host: Person;
   reviews: Reviews;
   city: City;
 };
