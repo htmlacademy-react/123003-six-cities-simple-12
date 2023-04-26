@@ -5,13 +5,22 @@ import MainPage from '../../pages/main-page/main-page';
 import ErrorPage from '../../pages/error-page/error-page';
 import OfferPageWrapper from '../offer-page-wrapper/offer-page-wrapper';
 import LoginPage from '../../pages/login-page/login-page';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppSelector } from '../../hooks';
+import Loading from '../../pages/loading/loading';
+import PrivateRoute from '../private-route/private-route';
 
-type AppScreenProps = {
-  isAuthorized: boolean;
-};
 
-function App({ isAuthorized }: AppScreenProps): JSX.Element {
+function App(): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isOffersDataLoading = useAppSelector((state) => state.isOffersDataLoading);
+
+  if (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) {
+    return (
+      <Loading />
+    );
+  }
+
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -22,15 +31,21 @@ function App({ isAuthorized }: AppScreenProps): JSX.Element {
           >
             <Route
               index
-              element={<MainPage isAuthorized={isAuthorized} />}
+              element={<MainPage />}
             />
             <Route
               path={AppRoute.Login}
-              element={<LoginPage isAuthorized={isAuthorized} />}
+              element={
+                <PrivateRoute
+                  authorizationStatus={authorizationStatus}
+                >
+                  <LoginPage />
+                </PrivateRoute>
+              }
             />
             <Route
               path={AppRoute.Offer}
-              element={<OfferPageWrapper isAuthorized={isAuthorized} />}
+              element={<OfferPageWrapper />}
             />
             <Route
               path='*'

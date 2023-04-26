@@ -1,0 +1,11 @@
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  line-height: 1.167;
+  font-weight: 700;
+  font-style: oblique;
+  color: #383838;
+  min-height: 100vh;
+}

@@ -1,4 +1,4 @@
-import { Offer } from '../../mocks/offers';
+import { Offer } from '../../types/offer';
 import { Link } from 'react-router-dom';
 import OfferCardInfo from '../offer-card-info/offer-card-info';
 import cn from 'classnames';

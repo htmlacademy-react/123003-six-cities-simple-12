@@ -1,4 +1,4 @@
-import { Review } from '../../mocks/reviews';
+import { Review } from '../../types/offer';
 import { RATING_COEFFICIENT, reviewAvatarPhoto } from '../../const';
 
 type ReviewItemProps = {

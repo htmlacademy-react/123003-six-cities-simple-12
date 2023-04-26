@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import leaflet from 'leaflet';
-import { Offer } from '../mocks/offers';
-import {URL_TEMPLATE, TILE_LAYER_ATTRIBUTION } from '../const';
+import { Offer } from '../types/offer';
+import { URL_TEMPLATE, TILE_LAYER_ATTRIBUTION } from '../const';
 
 function useMap(mapRef: MutableRefObject<HTMLElement | null>, offer: Offer) {
   const [map, setMap] = useState(null);
@@ -11,8 +11,8 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, offer: Offer) {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {
         center: {
-          lat: offer.city.location.lat,
-          lng: offer.city.location.lng,
+          lat: offer.city.location.latitude,
+          lng: offer.city.location.longitude,
         },
         zoom: offer.city.location.zoom,
       });

@@ -1,74 +1,96 @@
-const RATING_STARS_COUNT = 5;
+export const RATING_STARS_COUNT = 5;
 
-const RATING_TITLES = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
+export const RATING_TITLES = ['perfect', 'good', 'not bad', 'badly', 'terribly'];
 
-const enum AppRoute {
+export const enum AppRoute {
   Login = '/login',
   Offer = '/offer/:id',
   Root = '/',
 }
 
-const enum RoomType{
+export const enum RoomType{
 Room = 'room',
 Hotel = 'hotel',
 Apartment = 'apartment',
 House = 'house',
 }
 
-const RoomTypeToLabel = {
+export const RoomTypeToLabel = {
   [RoomType.Room]: 'Private Room',
   [RoomType.Hotel]: 'Hotel',
   [RoomType.Apartment]: 'Apartment',
   [RoomType.House]: 'House',
 };
 
-const URL_MARKER_DEFAULT =
+export const URL_MARKER_DEFAULT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
 
-const URL_MARKER_CURRENT =
+export const URL_MARKER_CURRENT =
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
 
-const URL_TEMPLATE = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+export const URL_TEMPLATE = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
 
-const TILE_LAYER_ATTRIBUTION = '\'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="\'https://carto.com/attributions">CARTO</a>\'';
+export const TILE_LAYER_ATTRIBUTION = '\'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="\'https://carto.com/attributions">CARTO</a>\'';
 
-const MAX_NEAR_PLACES_AMOUNT = 3;
+export const MAX_NEAR_PLACES_AMOUNT = 3;
 
-const MAX_REVIEWS_AMOUNT = 10;
+export const MAX_REVIEWS_AMOUNT = 10;
 
-const START_REVIEWS_AMOUNT = 0;
+export const START_REVIEWS_AMOUNT = 0;
 
-const START_NEAR_PLACES_AMOUNT = 0;
+export const START_NEAR_PLACES_AMOUNT = 0;
 
-const RATING_COEFFICIENT = 20;
+export const RATING_COEFFICIENT = 20;
 
-const reviewAvatarPhoto = {
+export const reviewAvatarPhoto = {
   WIDTH:54,
   HEIGHT:54,
 };
 
-const offerOwnerPhoto = {
+export const offerOwnerPhoto = {
   WIDTH:74,
   HEIGHT:74,
 };
 
-const offerCardImage = {
+export const offerCardImage = {
   WIDTH:260,
   HEIGHT:200,
 };
 
-const LogoImage = {
+export const LogoImage = {
   WIDTH:81,
   HEIGHT:41,
 };
 
-const DEFAULT_CITY = 'Paris';
+export const DEFAULT_CITY = 'Paris';
 
-const SortTypeToLabel = {
+export const SortTypeToLabel = {
   POPULAR: 'Popular',
   LOW_TO_HIGHT: 'Price: low to high',
   HIGHT_TO_LOW: 'Price: high to low',
   TOP: 'Top rated first',
 };
 
-export { AppRoute, RATING_STARS_COUNT, RATING_TITLES, RoomTypeToLabel, URL_MARKER_DEFAULT, URL_MARKER_CURRENT, RoomType, MAX_NEAR_PLACES_AMOUNT, MAX_REVIEWS_AMOUNT, RATING_COEFFICIENT, reviewAvatarPhoto, offerOwnerPhoto, offerCardImage, LogoImage, START_REVIEWS_AMOUNT, START_NEAR_PLACES_AMOUNT, URL_TEMPLATE, TILE_LAYER_ATTRIBUTION, DEFAULT_CITY, SortTypeToLabel };
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
+}
+
+export enum APIRoute {
+  Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+  Comments = '/comments',
+}
+
+export enum Cities {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf'
+}
+
+export const TIMEOUT_SHOW_ERROR = 2000;

@@ -1,11 +1,7 @@
 import Logo from '../logo/logo';
 import Nav from '../nav/nav';
 
-type HeaderProps = {
-  isAuthorized: boolean;
-};
-
-function Header({ isAuthorized }: HeaderProps): JSX.Element {
+function Header(): JSX.Element {
   return (
     <header className='header'>
       <div className='container'>
@@ -13,7 +9,7 @@ function Header({ isAuthorized }: HeaderProps): JSX.Element {
           <div className='header__left'>
             <Logo />
           </div>
-          {isAuthorized && <Nav />}
+          <Nav />
         </div>
       </div>
     </header>
