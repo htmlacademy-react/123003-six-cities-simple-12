@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import OfferCardInfo from '../offer-card-info/offer-card-info';
 import cn from 'classnames';
 import { offerCardImage } from '../../const';
+import { useAppDispatch } from '../../hooks/index';
+import { useParams } from 'react-router-dom';
+import { fetchReviewAction, fetchOfferDetailsAction } from '../../store/api-actions';
 
 type OfferCardProps = {
   offer: Offer;
@@ -12,6 +15,8 @@ type OfferCardProps = {
 }
 
 function OfferCard({ offer, classNameArticle, classNameWrapper, setSelectedOffer }: OfferCardProps): JSX.Element {
+  const offerId = Number(useParams().id);
+  const dispatch = useAppDispatch();
   const {
     id,
     title,
@@ -23,6 +28,10 @@ function OfferCard({ offer, classNameArticle, classNameWrapper, setSelectedOffer
     setSelectedOffer(id);
   };
 
+  const onClick = () => {
+    dispatch(fetchReviewAction(offerId));
+    dispatch(fetchOfferDetailsAction(offerId));
+  };
   return (
     <article className={cn('place-card', classNameArticle)} onMouseEnter={onMouseEnter}>
       {isPremium &&
@@ -33,6 +42,7 @@ function OfferCard({ offer, classNameArticle, classNameWrapper, setSelectedOffer
         <Link
           to={`offer/${id}`}
           title={title}
+          onClick={onClick}
         >
           <img
             className='place-card__image'

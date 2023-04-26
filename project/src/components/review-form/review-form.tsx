@@ -23,12 +23,14 @@ function ReviewForm() {
       <div className='reviews__rating-form form__rating'>
         {Array.from({ length: RATING_STARS_COUNT }, (_, index) => (
           <Fragment key={`${index}-input`}>
-            <input onChange={(evt) => { setFormData({ ...formData, rating: +evt.target.value }); }}
+            <input
+              onChange={(evt) => { setFormData({ ...formData, rating: +evt.target.value }); }}
               className='form__rating-input visually-hidden'
               name='rating'
               value={`${RATING_STARS_COUNT - index}`}
               id={`${RATING_STARS_COUNT - index}-stars`}
               type='radio'
+              required
             />
             <label
               htmlFor={`${RATING_STARS_COUNT - index}-stars`}
@@ -42,18 +44,22 @@ function ReviewForm() {
           </Fragment>
         ))}
       </div>
-      <textarea onChange={(evt) => { setFormData({ ...formData, comment: evt.target.value }); }}
+      <textarea
+        onChange={(evt) => { setFormData({ ...formData, comment: evt.target.value }); }}
         className='reviews__textarea form__textarea'
         id='review'
         name='review'
         placeholder='Tell how was your stay, what you like and what can be improved'
+        minLength={50}
+        maxLength={300}
+        required
       >
       </textarea>
       <div className='reviews__button-wrapper'>
         <p className='reviews__help'>
-          To submit review please make sure to set{''}
+          To submit review please make sure to set
           <span className='reviews__star'>rating</span> and describe
-          your stay with at least{''}
+          your stay with at least
           <b className='reviews__text-amount'>50 characters</b>.
         </p>
         <button className='reviews__submit form__submit button' type='submit' disabled>Submit</button>

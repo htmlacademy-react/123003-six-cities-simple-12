@@ -41,7 +41,7 @@ function MainPage(): JSX.Element {
         <Cities selectedCity={selectedCity} />
         <div className='cities'>
           {
-            (offers.length < 0) ?
+            (sorted.length < 0) ?
               <div className="cities__places-container cities__places-container--empty container">
                 <section className="cities__no-places">
                   <div className="cities__status-wrapper tabs__content">
@@ -56,7 +56,7 @@ function MainPage(): JSX.Element {
                 <section className='cities__places places'>
                   <h2 className='visually-hidden'>Places</h2>
                   <b className='places__found'>
-                    {offers.length} places to stay in {selectedCity}
+                    {sorted.length} places to stay in {selectedCity}
                   </b>
                   <Sort activeSortType={activeSortType} />
                   <OffersList
@@ -64,7 +64,7 @@ function MainPage(): JSX.Element {
                     classNameList='cities__places-list tabs__content'
                     classNameArticle='cities__card'
                     classNameWrapper='cities__image-wrapper'
-                    maxCardAmount={offers.length}
+                    maxCardAmount={sorted.length}
                     setSelectedOffer={setSelectedOffer}
                   />
                 </section>
@@ -72,7 +72,7 @@ function MainPage(): JSX.Element {
                   <section className='cities__map map'>
                     <Map
                       selectedCity={selectedCity}
-                      offers={offers}
+                      offers={sorted}
                       selectedOffer={selectedOffer}
                     />
                   </section>
