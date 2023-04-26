@@ -1,7 +1,8 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { setSelectedCity, setActiveSortType, loadOffers, loadReviews, requireAuthorization, setOffersDataLoadingStatus } from './action';
 import { DEFAULT_CITY, SortTypeToLabel, AuthorizationStatus } from '../const';
-import { Offers, Reviews } from '../types/offer';
+import { Offers, Reviews, Offer } from '../types/offer';
+import { fetchOfferDetailsAction } from './api-actions';
 
 type InitialState = {
  selectedCity: string;
@@ -10,8 +11,8 @@ type InitialState = {
   activeSortType: string;
   authorizationStatus: AuthorizationStatus;
   isOffersDataLoading: boolean;
-  error: string|null;
   reviews: Reviews;
+  offerDetails: Offer|null;
 };
 
 const initialState: InitialState = {
@@ -20,9 +21,9 @@ const initialState: InitialState = {
   activeSortType: SortTypeToLabel.POPULAR,
   isOffersDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
-  error: null,
   filteredOffers: [],
   reviews: [],
+  offerDetails: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -36,6 +37,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+      state.filteredOffers = state.offers.filter((offer) => offer.city.name === state.selectedCity);
     })
     .addCase(loadReviews, (state, action) => {
       state.reviews = action.payload;
@@ -45,6 +47,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setOffersDataLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
+    })
+    .addCase(fetchOfferDetailsAction.fulfilled, (state, action) => {
+      state.offerDetails = action.payload;
     });
 });
 

@@ -3,15 +3,12 @@ import Header from '../../components/header/header';
 import OffersList from '../../components/offers-list/offers-list';
 import ReviewForm from '../../components/review-form/review-form';
 import { RoomTypeToLabel, RATING_COEFFICIENT, offerOwnerPhoto } from '../../const';
-import { useAppSelector } from '../../hooks/index';
 import ReviewsList from '../../components/reviews-list/reviews-list';
 import Map from '../../components/map/map';
 import { Offer, Offers } from '../../types/offer';
 import { MAX_NEAR_PLACES_AMOUNT } from '../../const';
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchReviewAction } from '../../store/api-actions';
-import { useAppDispatch } from '../../hooks/index';
+import { useState } from 'react';
+import { useAppSelector } from '../../hooks/index';
 
 type OfferPageProps = {
   offer: Offer;
@@ -19,7 +16,7 @@ type OfferPageProps = {
 };
 
 function OfferPage({ offers, offer }: OfferPageProps): JSX.Element {
-  const offerId = Number(useParams().id);
+
   const selectedCity = useAppSelector((state) => state.selectedCity);
   const reviews = useAppSelector((state) => state.reviews);
   const [selectedOffer, setSelectedOffer] = useState('0');
@@ -36,10 +33,6 @@ function OfferPage({ offers, offer }: OfferPageProps): JSX.Element {
     host,
     type,
   } = offer;
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchReviewAction(offerId));
-  }, [dispatch, offerId]);
 
   return (
     <>
