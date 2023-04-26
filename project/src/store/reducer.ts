@@ -10,7 +10,6 @@ type InitialState = {
   activeSortType: string;
   authorizationStatus: AuthorizationStatus;
   isOffersDataLoading: boolean;
-  error: string|null;
   reviews: Reviews;
 };
 
@@ -20,7 +19,6 @@ const initialState: InitialState = {
   activeSortType: SortTypeToLabel.POPULAR,
   isOffersDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
-  error: null,
   filteredOffers: [],
   reviews: [],
 };
@@ -36,6 +34,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
+      state.filteredOffers = state.offers.filter((offer) => offer.city.name === state.selectedCity);
     })
     .addCase(loadReviews, (state, action) => {
       state.reviews = action.payload;

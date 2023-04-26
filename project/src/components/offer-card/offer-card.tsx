@@ -16,7 +16,7 @@ function OfferCard({ offer, classNameArticle, classNameWrapper, setSelectedOffer
     id,
     title,
     isPremium,
-    images,
+    previewImage,
   } = offer;
 
   const onMouseEnter = () => {
@@ -36,7 +36,7 @@ function OfferCard({ offer, classNameArticle, classNameWrapper, setSelectedOffer
         >
           <img
             className='place-card__image'
-            src={images[0].src}
+            src={previewImage}
             width={offerCardImage.WIDTH}
             height={offerCardImage.HEIGHT}
             alt={title}
