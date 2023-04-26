@@ -5,7 +5,7 @@ import cn from 'classnames';
 import { offerCardImage } from '../../const';
 import { useAppDispatch } from '../../hooks/index';
 import { useParams } from 'react-router-dom';
-import { fetchReviewAction, fetchOfferDetailsAction } from '../../store/api-actions';
+import { fetchReviewAction } from '../../store/api-actions';
 
 type OfferCardProps = {
   offer: Offer;
@@ -30,7 +30,6 @@ function OfferCard({ offer, classNameArticle, classNameWrapper, setSelectedOffer
 
   const onClick = () => {
     dispatch(fetchReviewAction(offerId));
-    dispatch(fetchOfferDetailsAction(offerId));
   };
   return (
     <article className={cn('place-card', classNameArticle)} onMouseEnter={onMouseEnter}>
