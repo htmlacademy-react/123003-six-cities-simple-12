@@ -1,4 +1,4 @@
-import { Offer } from '../../mocks/offers';
+import { Offer } from '../../types/offer';
 import { Link } from 'react-router-dom';
 import OfferCardInfo from '../offer-card-info/offer-card-info';
 import cn from 'classnames';
@@ -16,7 +16,7 @@ function OfferCard({ offer, classNameArticle, classNameWrapper, setSelectedOffer
     id,
     title,
     isPremium,
-    photos,
+    images,
   } = offer;
 
   const onMouseEnter = () => {
@@ -36,7 +36,7 @@ function OfferCard({ offer, classNameArticle, classNameWrapper, setSelectedOffer
         >
           <img
             className='place-card__image'
-            src={photos[0].src}
+            src={images[0].src}
             width={offerCardImage.WIDTH}
             height={offerCardImage.HEIGHT}
             alt={title}
