@@ -9,7 +9,7 @@ import Sort from '../../components/sort/sort';
 import { SortTypeToLabel } from '../../const';
 
 function MainPage(): JSX.Element {
-  const offers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector((state) => state.filteredOffers);
   let sorted = [...offers];
   const selectedCity = useAppSelector((state) => state.selectedCity);
   const activeSortType = useAppSelector((state) => state.activeSortType);

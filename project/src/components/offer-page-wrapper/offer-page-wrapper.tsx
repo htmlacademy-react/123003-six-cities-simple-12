@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import OfferPage from '../../pages/offer-page/offer-page';
-import Error from '../../pages/error-page/error-page';
 import { useAppSelector } from '../../hooks/index';
+import NotFoundPage from '../../pages/no-found-page/not-found-page';
 
 function OfferPageWrapper(): JSX.Element {
   const offers = useAppSelector((state) => state.offers);
@@ -13,7 +13,7 @@ function OfferPageWrapper(): JSX.Element {
     return <OfferPage offers={offers} offer={offer} />;
   }
 
-  return <Error />;
+  return <NotFoundPage />;
 }
 
 export default OfferPageWrapper;

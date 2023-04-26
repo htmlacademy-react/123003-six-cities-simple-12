@@ -29,11 +29,11 @@ function OfferPage({ offers, offer }: OfferPageProps): JSX.Element {
     isPremium,
     rating,
     bedrooms,
-    guests,
+    maxAdults,
     price,
-    options,
-    photos,
-    owner,
+    goods,
+    images,
+    host,
     type,
   } = offer;
   const dispatch = useAppDispatch();
@@ -51,14 +51,14 @@ function OfferPage({ offers, offer }: OfferPageProps): JSX.Element {
         <section className='property'>
           <div className='property__gallery-container container'>
             <div className='property__gallery'>
-              {photos && photos.map((photo, index) => {
+              {images && images.map((image, index) => {
                 const keyValue = `${index}`;
                 return (
                   <div key={keyValue} className='property__image-wrapper'>
                     <img
                       className='property__image'
-                      src={photo.src}
-                      alt={photo.title}
+                      src={image.src}
+                      alt={title}
                     />
                   </div>
                 );
@@ -93,7 +93,7 @@ function OfferPage({ offers, offer }: OfferPageProps): JSX.Element {
                   {bedrooms} Bedrooms
                 </li>
                 <li className='property__feature property__feature--adults'>
-                  Max {guests} adults
+                  Max {maxAdults} adults
                 </li>
               </ul>
               <div className='property__price'>
@@ -103,7 +103,7 @@ function OfferPage({ offers, offer }: OfferPageProps): JSX.Element {
               <div className='property__inside'>
                 <h2 className='property__inside-title'>What&apos;s inside</h2>
                 <ul className='property__inside-list'>
-                  {options.map((option, index) => {
+                  {goods.map((option, index) => {
                     const keyValue = `${index}`;
                     return (
                       <li key={keyValue} className='property__inside-item'>{option}</li>
@@ -117,14 +117,14 @@ function OfferPage({ offers, offer }: OfferPageProps): JSX.Element {
                   <div className='property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper'>
                     <img
                       className='property__avatar user__avatar'
-                      src={owner.avatar}
+                      src={host.avatarUrl}
                       width={offerOwnerPhoto.WIDTH}
                       height={offerOwnerPhoto.HEIGHT}
                       alt='Host avatar'
                     />
                   </div>
-                  <span className='property__user-name'>{owner.name}</span>
-                  {owner.isPro && <span className="property__user-status">Pro</span>}
+                  <span className='property__user-name'>{host.name}</span>
+                  {host.isPro && <span className="property__user-status">Pro</span>}
                 </div>
                 <div className='property__description'>
                   <p className='property__text'>
