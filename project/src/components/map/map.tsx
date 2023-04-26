@@ -3,8 +3,7 @@ import { useRef, useEffect } from 'react';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
 import useMap from '../../hooks/use-map';
 import 'leaflet/dist/leaflet.css';
-import { Offers, Offer } from '../../types/offer';
-import { useAppSelector } from '../../hooks';
+import { Offers } from '../../types/offer';
 
 type MapProps = {
   selectedOffer: string;
@@ -25,21 +24,12 @@ const currentCustomIcon = leaflet.icon({
 });
 
 function Map({ selectedCity, selectedOffer, offers }: MapProps): JSX.Element {
-  const filteredOffers = useAppSelector((state) => state.filteredOffers);
   const mapRef = useRef(null);
-  const cityLocation = filteredOffers[0].city.location;
-  const map = useMap(mapRef, cityLocation);
+  const map = useMap(mapRef, offers[0]);
 
   useEffect(() => {
     if (map) {
-      const { latitude, longitude, zoom } = cityLocation;
-      map.flyTo([latitude, longitude], zoom);
-    }
-  }, [map, cityLocation]);
-
-  useEffect(() => {
-    if (map && offers) {
-      offers.forEach((offer: Offer) => {
+      offers.forEach((offer) => {
         leaflet
           .marker({
             lat: offer.location.latitude,
