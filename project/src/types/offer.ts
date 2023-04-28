@@ -4,7 +4,7 @@ type Image = {
     src: string;
 };
 
-type Location = {
+export type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
@@ -39,6 +39,8 @@ export type Offer = {
   rating: number;
   bedrooms: number;
   maxAdults: number;
+  previewImage:string;
+  location:Location;
   price: number;
   goods: string[];
   images: Image[];

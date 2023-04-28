@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/index';
 import { fetchOfferAction, checkAuthAction } from './store/api-actions';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 store.dispatch(fetchOfferAction());
 store.dispatch(checkAuthAction());
